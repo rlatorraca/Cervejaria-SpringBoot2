@@ -1,14 +1,13 @@
-package com.algaworks.brewer.session;
+package com.rlsp.cervejaria.session;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.math.BigDecimal;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import com.algaworks.brewer.model.Cerveja;
-import com.algaworks.brewer.session.TabelaItensVenda;
+import com.rlsp.cervejaria.model.Cerveja;
 
 public class TabelaItensVendaTest {
 

@@ -7,30 +7,41 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 
-import com.amazonaws.ClientConfiguration;
-import com.amazonaws.auth.AWSCredentials;
+import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.BasicAWSCredentials;
-import com.amazonaws.regions.Region;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.AmazonS3;
-import com.amazonaws.services.s3.AmazonS3Client;
+import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 
 @Profile("prod")
 @Configuration
-@PropertySource(value = { "file://${HOME}/.brewer-s3.properties" }, ignoreResourceNotFound = true)
+@PropertySource(value = { "file://${HOME}/.cervejaria-s3.properties" }, ignoreResourceNotFound = true)
 public class S3Config {
-	
+
 	@Autowired
 	private Environment env;
 
-	@Bean
-	public AmazonS3 amazonS3() {
-		AWSCredentials credenciais = new BasicAWSCredentials(
-				env.getProperty("AWS_ACCESS_KEY_ID"), env.getProperty("AWS_SECRET_ACCESS_KEY"));
-		AmazonS3 amazonS3 = new AmazonS3Client(credenciais, new ClientConfiguration());
-		Region regiao = Region.getRegion(Regions.US_WEST_2);
-		amazonS3.setRegion(regiao);
-		return amazonS3;
-	}
+	
+	  @Bean public AmazonS3 amazonS3() {
+	  
+	  BasicAWSCredentials credenciais = new  BasicAWSCredentials(env.getProperty("AWS_ACCESS_KEY"),
+	  env.getProperty("AWS_SECRET_ACCESS_KEY"));
+	  
+	  //String regiao = Region.getRegion(Regions.US_EAST_1); 
+		/*
+		 * AmazonTextract amazonS3 = AmazonTextractClientBuilder.standard()
+		 * .withCredentials(new AWSStaticCredentialsProvider(credenciais))
+		 * .withRegion(Regions.US_EAST_1) .build();
+		 */ 
+	  AmazonS3 amazonS3 = AmazonS3ClientBuilder.standard()
+			  .withRegion(Regions.US_EAST_1) 
+			  .withCredentials(new AWSStaticCredentialsProvider(credenciais)) 
+			  .build();
+	  System.out.println(amazonS3.getRegionName());
+	  System.out.println(amazonS3.getUrl("cervejaria-rlsp", null));
+	  return amazonS3; 
+	  }
+	 
+
 	
 }

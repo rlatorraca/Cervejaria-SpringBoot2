@@ -1,10 +1,12 @@
 package com.rlsp.cervejaria.controller.converter;
 
 import org.springframework.core.convert.converter.Converter;
+import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
 import com.rlsp.cervejaria.model.Estilo;
 
+@Component
 public class EstiloConverter implements Converter<String, Estilo> {
 
 	@Override

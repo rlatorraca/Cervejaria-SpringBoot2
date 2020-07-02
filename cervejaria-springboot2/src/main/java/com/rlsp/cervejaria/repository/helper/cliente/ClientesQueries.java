@@ -6,7 +6,7 @@ import org.springframework.data.domain.Pageable;
 import com.rlsp.cervejaria.model.Cliente;
 import com.rlsp.cervejaria.repository.filter.ClienteFilter;
 
-public interface ClientesRepositoryQueries {
+public interface ClientesQueries {
 
 	//public List<Cerveja> filtrar(CervejaFilter filtro);
 	

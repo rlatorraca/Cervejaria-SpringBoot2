@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
@@ -21,7 +22,7 @@ import com.rlsp.cervejaria.repository.paginacao.PaginacaoUtil;
 
 
 
-public class EstilosRepositoryImpl implements EstilosRepositoryQueries {
+public class EstilosImpl implements EstilosQueries {
 	
 	@PersistenceContext
 	private EntityManager manager;
@@ -32,6 +33,7 @@ public class EstilosRepositoryImpl implements EstilosRepositoryQueries {
 	@SuppressWarnings("unchecked")
 	@Override
 	@Transactional(readOnly = true)
+	@Query(value = "normal Sql query", nativeQuery=true)
 	public Page<Estilo> filtrar(EstiloFilter filtro, Pageable pageable) {
 		Criteria criteria = manager.unwrap(Session.class).createCriteria(Estilo.class);
 		

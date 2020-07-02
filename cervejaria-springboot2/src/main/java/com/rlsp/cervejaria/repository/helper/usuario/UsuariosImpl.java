@@ -23,6 +23,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
@@ -32,7 +33,7 @@ import com.rlsp.cervejaria.model.UsuarioGrupo;
 import com.rlsp.cervejaria.repository.filter.UsuarioFilter;
 import com.rlsp.cervejaria.repository.paginacao.PaginacaoUtil;
 
-public class UsuariosRepositoryImpl implements UsuariosRepositoryQueries {
+public class UsuariosImpl implements UsuariosQueries {
 
 	@PersistenceContext
 	private EntityManager manager;
@@ -58,7 +59,7 @@ public class UsuariosRepositoryImpl implements UsuariosRepositoryQueries {
 	}
 	
 	@SuppressWarnings("unchecked")
-	@Transactional(readOnly = true)
+	@Transactional(readOnly = true)	
 	@Override
 	public Page<Usuario> filtrar(UsuarioFilter filtro, Pageable pageable) {
 		Criteria criteria = manager.unwrap(Session.class).createCriteria(Usuario.class);

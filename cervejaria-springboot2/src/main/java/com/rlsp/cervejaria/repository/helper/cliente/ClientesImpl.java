@@ -24,7 +24,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
-import com.rlsp.cervejaria.dto.CervejaDTO;
 import com.rlsp.cervejaria.model.Cidade;
 import com.rlsp.cervejaria.model.Cliente;
 import com.rlsp.cervejaria.model.Endereco;
@@ -33,7 +32,7 @@ import com.rlsp.cervejaria.repository.filter.CervejaFilter;
 import com.rlsp.cervejaria.repository.filter.ClienteFilter;
 import com.rlsp.cervejaria.repository.paginacao.PaginacaoUtil;
 
-public class ClientesRepositoryImpl  implements ClientesRepositoryQueries{
+public class ClientesImpl  implements ClientesQueries{
 
 	@PersistenceContext
 	private EntityManager manager;
@@ -43,7 +42,8 @@ public class ClientesRepositoryImpl  implements ClientesRepositoryQueries{
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	@Transactional(readOnly = true)	
+	@Transactional(readOnly = true)
+	
 	public Page<Cliente> filtrar(ClienteFilter filtro, Pageable pageable) {
 		//public Page<Cerveja> filtrar(CervejaFilter filtro, Pageable pageable) {
 		
@@ -119,20 +119,5 @@ public class ClientesRepositoryImpl  implements ClientesRepositoryQueries{
 			
 		}
 	}
-	
-//	private boolean isEstiloPresente(CervejaFilter filtro) {
-//		return filtro.getEstilo() != null && filtro.getEstilo().getCodigo() != null;
-//	}
-//
-//	public List<CervejaDTO> porSkuOuNome(String skuOuNome) {
-//		
-//		String jpql = "select new com.algaworks.brewer.dto.CervejaDTO(codigo, sku, nome, origem, valor, foto) "
-//				+ "from Cerveja where lower(sku) like lower(:skuOuNome) or lower(nome) like lower(:skuOuNome)";
-//		
-//		List<CervejaDTO> cervejasFiltradas = manager.createQuery(jpql, CervejaDTO.class)
-//					.setParameter("skuOuNome", skuOuNome + "%")
-//					.getResultList();
-//		
-//		return cervejasFiltradas;
-//	}
+
 }

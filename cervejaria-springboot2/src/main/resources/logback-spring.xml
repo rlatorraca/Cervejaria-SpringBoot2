@@ -2,8 +2,9 @@
 <configuration>
     <include resource="org/springframework/boot/logging/logback/base.xml" />
 
-    <logger name="com.algaworks" level="debug" />
+    <logger name="com.rlsp" level="debug" />
 
+	<!-- apenas logs quando em DEFAAULT = desenvolvimento -->
     <springProfile name="default">      
         <logger name="org.hibernate.SQL" level="debug" />
     </springProfile>

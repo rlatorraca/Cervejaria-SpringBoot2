@@ -9,7 +9,7 @@ import org.springframework.data.domain.Pageable;
 import com.rlsp.cervejaria.model.Usuario;
 import com.rlsp.cervejaria.repository.filter.UsuarioFilter;
 
-public interface UsuariosRepositoryQueries {
+public interface UsuariosQueries {
 
 	public Optional<Usuario> porEmailEAtivo(String email);
 	

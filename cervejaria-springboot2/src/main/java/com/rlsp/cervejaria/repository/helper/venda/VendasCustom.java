@@ -11,7 +11,7 @@ import com.rlsp.cervejaria.dto.VendaOrigem;
 import com.rlsp.cervejaria.model.Venda;
 import com.rlsp.cervejaria.repository.filter.VendaFilter;
 
-public interface VendasRepositoryQueries {
+public interface VendasCustom {
 
 	Page<Venda> filtrar(VendaFilter filtro, Pageable pageable);
 	

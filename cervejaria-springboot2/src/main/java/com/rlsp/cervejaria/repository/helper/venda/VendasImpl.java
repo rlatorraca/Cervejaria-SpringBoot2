@@ -23,6 +23,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
@@ -34,7 +35,7 @@ import com.rlsp.cervejaria.model.Venda;
 import com.rlsp.cervejaria.repository.filter.VendaFilter;
 import com.rlsp.cervejaria.repository.paginacao.PaginacaoUtil;
 
-public class VendasRepositoryImpl implements VendasRepositoryQueries {
+public class VendasImpl implements VendasCustom {
 	
 	@PersistenceContext
 	private EntityManager manager;
@@ -45,6 +46,7 @@ public class VendasRepositoryImpl implements VendasRepositoryQueries {
 	@SuppressWarnings("unchecked")
 	@Transactional(readOnly = true)
 	@Override
+	
 	public Page<Venda> filtrar(VendaFilter filtro, Pageable pageable) {
 		Criteria criteria = manager.unwrap(Session.class).createCriteria(Venda.class);
 		paginacaoUtil.preparar(criteria, pageable);
@@ -116,16 +118,18 @@ public class VendasRepositoryImpl implements VendasRepositoryQueries {
 	
 
 	@Override
+	@Query(value = "normal Sql query", nativeQuery=true)
 	public BigDecimal valorTotalNoAno() {
 		/**
 		 * Usando JPQL
 		 */
+
 		Optional<BigDecimal> optional = Optional.ofNullable(
 				manager.createQuery("select sum(valorTotal) from Venda where year(dataCriacao) = :ano and status = :status", BigDecimal.class)
 					.setParameter("ano", Year.now().getValue()) // Pega o ANO ATUAL
 					.setParameter("status", StatusVenda.EMITIDA)
 					.getSingleResult());
-		return optional.orElse(BigDecimal.ZERO); // retorna um valor OR Zero
+		return optional.orElse(BigDecimal.ZERO);// retorna um valor OR Zero
 	}
 	
 	@Override

@@ -44,6 +44,7 @@ public class CadastroVendaService {
 		}
 		
 		return vendas.saveAndFlush(venda);
+		
 	}
 
 	@Transactional

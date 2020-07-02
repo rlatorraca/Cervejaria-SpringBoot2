@@ -26,6 +26,7 @@ public class CadastroEstiloService {
 		}
 		
 		return estilos.saveAndFlush(estilo);
+		//return estilos.save(estilo);
 	}
 	
 }

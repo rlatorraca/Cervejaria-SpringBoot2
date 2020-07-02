@@ -21,8 +21,8 @@ public class AtributoConfirmacaoSenhaValidator implements ConstraintValidator<At
 	
 	@Override
 	public void initialize(AtributoConfirmacaoSenha constraintAnnotation) {
-		this.atributoSenha = constraintAnnotation.atributoSenha();
-		this.atributoConfirmacaoSenha = constraintAnnotation.atributoConfirmacaoSenha();
+		this.atributoSenha = constraintAnnotation.atributo();
+		this.atributoConfirmacaoSenha = constraintAnnotation.atributoConfirmacao();
 	}
 	
 	@Override

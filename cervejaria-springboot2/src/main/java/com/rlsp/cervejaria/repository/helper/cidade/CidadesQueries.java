@@ -6,7 +6,7 @@ import org.springframework.data.domain.Pageable;
 import com.rlsp.cervejaria.model.Cidade;
 import com.rlsp.cervejaria.repository.filter.CidadeFilter;
 
-public interface CidadesRepositoryQueries {
+public interface CidadesQueries {
 
 	public Page<Cidade> filtrar(CidadeFilter filtro, Pageable pageable);
 	

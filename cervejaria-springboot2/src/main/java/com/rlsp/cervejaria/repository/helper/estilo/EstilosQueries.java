@@ -6,7 +6,7 @@ import org.springframework.data.domain.Pageable;
 import com.rlsp.cervejaria.model.Estilo;
 import com.rlsp.cervejaria.repository.filter.EstiloFilter;
 
-public interface EstilosRepositoryQueries {
+public interface EstilosQueries {
 
 	public Page<Estilo> filtrar(EstiloFilter filtro, Pageable pageable);
 }

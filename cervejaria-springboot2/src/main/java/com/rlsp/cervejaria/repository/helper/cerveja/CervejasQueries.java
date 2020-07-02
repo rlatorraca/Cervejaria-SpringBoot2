@@ -10,7 +10,7 @@ import com.rlsp.cervejaria.dto.ValorItensEstoque;
 import com.rlsp.cervejaria.model.Cerveja;
 import com.rlsp.cervejaria.repository.filter.CervejaFilter;
 
-public interface CervejasRepositoryQueries {
+public interface CervejasQueries {
 
 	//public List<Cerveja> filtrar(CervejaFilter filtro);
 	

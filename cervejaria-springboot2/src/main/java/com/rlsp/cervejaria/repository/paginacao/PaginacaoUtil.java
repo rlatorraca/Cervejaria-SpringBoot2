@@ -1,5 +1,7 @@
 package com.rlsp.cervejaria.repository.paginacao;
 
+import java.io.Serializable;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
@@ -14,8 +16,9 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 
 @Component
-public class PaginacaoUtil {
+public class PaginacaoUtil implements Serializable{
 
+	private static final long serialVersionUID = 1L;
 	@PersistenceContext
 	private EntityManager manager;
 
@@ -58,8 +61,7 @@ public class PaginacaoUtil {
 		if (sort != null && sort.isSorted()) {
 			Sort.Order order = sort.iterator().next();
 			String property = order.getProperty();
-			criteria.addOrder(order.isAscending() ? org.hibernate.criterion.Order.asc(property)
-					: org.hibernate.criterion.Order.desc(property));
+			criteria.addOrder(order.isAscending() ? org.hibernate.criterion.Order.asc(property) : org.hibernate.criterion.Order.desc(property));
 		}
 	}
 

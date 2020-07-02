@@ -28,7 +28,7 @@ import com.rlsp.cervejaria.repository.filter.CervejaFilter;
 import com.rlsp.cervejaria.repository.paginacao.PaginacaoUtil;
 import com.rlsp.cervejaria.storage.FotoStorage;
 
-public class CervejasRepositoryImpl  implements CervejasRepositoryQueries{
+public class CervejasImpl  implements CervejasQueries{
 
 	@PersistenceContext
 	private EntityManager manager;

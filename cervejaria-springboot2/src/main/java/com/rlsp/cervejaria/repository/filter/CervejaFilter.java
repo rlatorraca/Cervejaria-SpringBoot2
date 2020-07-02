@@ -1,7 +1,5 @@
 package com.rlsp.cervejaria.repository.filter;
 
-
-
 import java.math.BigDecimal;
 
 import com.rlsp.cervejaria.model.Estilo;
@@ -74,5 +72,32 @@ public class CervejaFilter {
 	public void setValorAte(BigDecimal valorAte) {
 		this.valorAte = valorAte;
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((sku == null) ? 0 : sku.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		CervejaFilter other = (CervejaFilter) obj;
+		if (sku == null) {
+			if (other.sku != null)
+				return false;
+		} else if (!sku.equals(other.sku))
+			return false;
+		return true;
+	}
+	
+	
 
 }
